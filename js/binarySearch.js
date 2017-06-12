@@ -2,24 +2,28 @@ const data = [1, 4, 6, 8, 9, 10, 11, 15, 19, 26, 33];
 
 
 function binarySearch(data, target) {
-  let mid = Math.floor(data.length / 2);
-  let el = data[mid];
-  console.log('Array state:');
-  console.log(data);
+  logState(data);
+  let midIndex = Math.floor(data.length / 2);
+  let comparison = data[midIndex];
 
-  if (el === target) {
+  if (target === comparison) {
     return target;
   } else if (data.length === 1) {
     return 'this isn\'t the number you\'re looking for';
   }
 
-  if (target < el) {
-    return binarySearch(data.slice(0, mid), target);
+  if (target < comparison) {
+    return binarySearch(data.slice(0, midIndex), target);
   }
 
-  if (target > el) {
-    return binarySearch(data.slice(mid, data.length), target);
+  if (target > comparison) {
+    return binarySearch(data.slice(midIndex, data.length), target);
   }
+}
+
+function logState(data) {
+  console.log('Array state:');
+  console.log(data);
 }
 
 console.log(binarySearch(data, 33));
